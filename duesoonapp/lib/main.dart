@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp (
       title: 'Due Soon, Do Soon',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.blue,
       ),
       home: NoteList(),
     );

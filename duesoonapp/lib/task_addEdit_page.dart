@@ -76,27 +76,6 @@ class TaskAddEditState extends State<TaskAddEdit> {
               child: ListView(
                   children: <Widget>[
 
-                    ListTile(
-                      title: DropdownButton(
-                          items: _prioritiesList.map((String dropDownStringItem) {
-                            return DropdownMenuItem<String> (
-                              value: dropDownStringItem,
-                              child: Text(dropDownStringItem, textAlign: TextAlign.center),
-                            );
-                          }).toList(),
-
-                          style: textStyle,
-
-                          value: convertNumToPriority(task.priority),
-
-                          onChanged: (valueSelectedByUser) {
-                            setState(() {
-                              debugPrint('User selected $valueSelectedByUser');
-                              convertPriorityToNum(valueSelectedByUser);
-                            });
-                          }
-                      ),
-                    ),
 
                     // Second Element
                     Padding(
@@ -136,7 +115,73 @@ class TaskAddEditState extends State<TaskAddEdit> {
                         )
                     ),
 
-                    // Fourth Element
+
+
+                    // DROP DOWN -------------->
+                    ListTile(
+                      title: DropdownButton(
+                          items: _prioritiesList.map((String dropDownStringItem) {
+                            return DropdownMenuItem<String> (
+                              value: dropDownStringItem,
+                              child: Text(dropDownStringItem, textAlign: TextAlign.center),
+                            );
+                          }).toList(),
+
+                          style: textStyle,
+
+                          value: convertNumToPriority(task.priority),
+
+                          onChanged: (valueSelectedByUser) {
+                            setState(() {
+                              debugPrint('User selected $valueSelectedByUser');
+                              convertPriorityToNum(valueSelectedByUser);
+                            });
+                          }
+                      ),
+                    ),
+
+                    // DATE TIME PICKER ----------------->
+                    Padding(
+                        padding: EdgeInsets.only(top: 60.0, bottom: 15.0),
+                        child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                  child: RaisedButton(
+                                      color: Theme.of(context).primaryColorDark,
+                                      textColor: Theme.of(context).primaryColorLight,
+                                      child: Text(
+                                        'Pick a Date & Time!',
+                                        textScaleFactor: 1.2,
+                                      ),
+                                    onPressed: () {
+                                      DatePicker.showDatePicker(context,
+                                          showTitleActions: true,
+                                          minTime: DateTime(2020, 4, 20),
+                                          maxTime: DateTime(2040, 12, 31),
+                                          theme: DatePickerTheme(
+                                              headerColor: Colors.blueGrey,
+                                              backgroundColor: Colors.grey,
+                                              itemStyle: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                              doneStyle:
+                                              TextStyle(color: Colors.white, fontSize: 16)),
+                                          onChanged: (date) {
+                                            print('change $date in time zone ' +
+                                                date.timeZoneOffset.inHours.toString());
+                                          }, onConfirm: (date) {
+                                            selectedDate = "Due Date: " + date.toString().substring(0,11);
+                                          }, currentTime: DateTime.now(), locale: LocaleType.en);
+                                    },
+                                  )
+                              ),
+                            ]
+                        )
+                    ),
+
+
+                    // SAVE AND DELETE BUTTONS ----------------->
                     Padding(
                         padding: EdgeInsets.only(top: 60.0, bottom: 15.0),
                         child: Row(
@@ -177,35 +222,6 @@ class TaskAddEditState extends State<TaskAddEdit> {
                             ]
                         )
                     ),
-
-
-                    // Fifth
-                    FlatButton(
-                        onPressed: () {
-                          DatePicker.showDatePicker(context,
-                              showTitleActions: true,
-                              minTime: DateTime(2018, 3, 5),
-                              maxTime: DateTime(2019, 6, 7),
-                              theme: DatePickerTheme(
-                                  headerColor: Colors.orange,
-                                  backgroundColor: Colors.blue,
-                                  itemStyle: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                  doneStyle:
-                                  TextStyle(color: Colors.white, fontSize: 16)),
-                              onChanged: (date) {
-                                print('change $date in time zone ' +
-                                    date.timeZoneOffset.inHours.toString());
-                              }, onConfirm: (date) {
-                                selectedDate = "Due Date: " + date.toString();
-                              }, currentTime: DateTime.now(), locale: LocaleType.en);
-                        },
-                        child: Text(
-                          'show date picker(custom theme &date time range)',
-                          style: TextStyle(color: Colors.blue),
-                        )),
 
                   ]
               )

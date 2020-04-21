@@ -50,6 +50,7 @@ class NoteListState extends State<NoteList> {
       body: getNoteListView(),
 
       floatingActionButton: FloatingActionButton (
+        backgroundColor: Colors.black54,
         onPressed: () {
           switchAddEditPage(Task('','',2), "\n\nA D D    T A S K       +\n");
         },
@@ -65,7 +66,12 @@ class NoteListState extends State<NoteList> {
 
     return ListView.builder(
       itemCount: numEntries,
-      itemBuilder: (BuildContext context, int position) {
+      itemBuilder: (BuildContext context, int pos) {
+
+        if (numEntries == 0) {
+          return Text("There are no entries currently!");
+        }
+
         return Card(
           margin: EdgeInsets.all(18.0),
           color: Colors.white,
@@ -76,23 +82,22 @@ class NoteListState extends State<NoteList> {
           elevation: 2.0,
           child: ListTile(
 
-            title: new Center( child: Text(this.taskList[position].taskName, style: new TextStyle(
+            title: new Center( child: Text(this.taskList[pos].taskName, style: new TextStyle(
                 fontWeight: FontWeight.w500, fontSize: 20.0),)),
 
-            subtitle: new Center( child: Text(this.taskList[position].date, style: new TextStyle(
+            subtitle: new Center( child: Text(this.taskList[pos].date, style: new TextStyle(
                 fontWeight: FontWeight.w500, fontSize: 17.0, color: Colors.grey),)),
 
             trailing: GestureDetector(
               child: Icon(Icons.check_circle_outline, color: Colors.green,),
               onTap: () {
-                _delete(context, taskList[position]);
+                _delete(context, taskList[pos]);
               },
             ),
 
 
             onTap: () {
-              debugPrint("ListTile Tapped");
-              switchAddEditPage(this.taskList[position],'Edit Note');
+              switchAddEditPage(this.taskList[pos],"\n\n-      E D I T     T A S K     -  \n");
             },
 
           ),
