@@ -43,7 +43,7 @@ class NoteListState extends State<NoteList> {
             backgroundColor: Colors.black54,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(35),
+                bottom: Radius.circular(25),
               ),
             ),)
       ),
@@ -83,13 +83,13 @@ class NoteListState extends State<NoteList> {
           child: ListTile(
 
             title: new Center( child: Text(this.taskList[pos].taskName, style: new TextStyle(
-                fontWeight: FontWeight.w500, fontSize: 20.0),)),
+                color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20.0),)),
 
             subtitle: new Center( child: Text(this.taskList[pos].date, style: new TextStyle(
-                fontWeight: FontWeight.w500, fontSize: 17.0, color: Colors.grey),)),
+                fontSize: 16.0, color: Colors.grey),)),
 
             trailing: GestureDetector(
-              child: Icon(Icons.check_circle_outline, color: Colors.green,),
+              child: Icon(Icons.check_circle_outline, color: Colors.black,),
               onTap: () {
                 _delete(context, taskList[pos]);
               },
