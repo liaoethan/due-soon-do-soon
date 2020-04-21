@@ -77,9 +77,9 @@ class TaskAddEditState extends State<TaskAddEdit> {
                   children: <Widget>[
 
 
-                    // Second Element
+                    // TASK NAME ---------->
                     Padding(
-                        padding: EdgeInsets.only(top: 80.0, bottom: 15.0),
+                        padding: EdgeInsets.only(top: 40.0, bottom: 15.0),
                         child: TextField(
                             controller: taskNameController,
                             style: textStyle,
@@ -96,9 +96,9 @@ class TaskAddEditState extends State<TaskAddEdit> {
                         )
                     ),
 
-                    // Third Element
+                    // DESCRIPTION -------->
                     Padding(
-                        padding: EdgeInsets.only(top: 20.0, bottom: 15.0),
+                        padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
                         child: TextField(
                             controller: descriptionController,
                             style: textStyle,
@@ -142,16 +142,18 @@ class TaskAddEditState extends State<TaskAddEdit> {
 
                     // DATE TIME PICKER ----------------->
                     Padding(
-                        padding: EdgeInsets.only(top: 60.0, bottom: 15.0),
+                        padding: EdgeInsets.only(top: 40.0, bottom: 15.0),
                         child: Row(
                             children: <Widget>[
                               Expanded(
                                   child: RaisedButton(
-                                      color: Theme.of(context).primaryColorDark,
-                                      textColor: Theme.of(context).primaryColorLight,
+                                      color: Colors.black54,
+                                      textColor: Colors.white,
+                                      padding: EdgeInsets.all(8.0),
+                                      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0)),
                                       child: Text(
                                         'Pick a Date & Time!',
-                                        textScaleFactor: 1.2,
+                                        textScaleFactor: 1.5,
                                       ),
                                     onPressed: () {
                                       DatePicker.showDatePicker(context,
@@ -159,20 +161,18 @@ class TaskAddEditState extends State<TaskAddEdit> {
                                           minTime: DateTime(2020, 4, 20),
                                           maxTime: DateTime(2040, 12, 31),
                                           theme: DatePickerTheme(
-                                              headerColor: Colors.blueGrey,
+                                              headerColor: Colors.black54,
                                               backgroundColor: Colors.grey,
                                               itemStyle: TextStyle(
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.bold,
-                                                  fontSize: 18),
+                                                  fontSize: 20),
                                               doneStyle:
-                                              TextStyle(color: Colors.white, fontSize: 16)),
-                                          onChanged: (date) {
-                                            print('change $date in time zone ' +
-                                                date.timeZoneOffset.inHours.toString());
-                                          }, onConfirm: (date) {
+                                              TextStyle(color: Colors.white, fontSize: 20)),
+                                          onConfirm: (date) {
                                             selectedDate = "Due Date: " + date.toString().substring(0,11);
-                                          }, currentTime: DateTime.now(), locale: LocaleType.en);
+                                          },
+                                          currentTime: DateTime.now(), locale: LocaleType.en);
                                     },
                                   )
                               ),
@@ -183,13 +183,15 @@ class TaskAddEditState extends State<TaskAddEdit> {
 
                     // SAVE AND DELETE BUTTONS ----------------->
                     Padding(
-                        padding: EdgeInsets.only(top: 60.0, bottom: 15.0),
+                        padding: EdgeInsets.only(top: 30.0, bottom: 15.0),
                         child: Row(
                             children: <Widget>[
                               Expanded(
                                   child: RaisedButton(
-                                      color: Theme.of(context).primaryColorDark,
-                                      textColor: Theme.of(context).primaryColorLight,
+                                      color: Colors.black54,
+                                      textColor: Colors.white,
+                                      padding: EdgeInsets.all(8.0),
+                                      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0)),
                                       child: Text(
                                         'Save',
                                         textScaleFactor: 1.5,
@@ -206,8 +208,10 @@ class TaskAddEditState extends State<TaskAddEdit> {
 
                               Expanded(
                                   child: RaisedButton(
-                                      color: Theme.of(context).primaryColorDark,
-                                      textColor: Theme.of(context).primaryColorLight,
+                                      color: Colors.black54,
+                                      textColor: Colors.white,
+                                      padding: EdgeInsets.all(8.0),
+                                      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(10.0)),
                                       child: Text(
                                         'Delete',
                                         textScaleFactor: 1.5,

@@ -73,10 +73,10 @@ class NoteListState extends State<NoteList> {
         }
 
         return Card(
-          margin: EdgeInsets.all(18.0),
-          color: Colors.white,
+          margin: EdgeInsets.only(top: 22.0, left: 15.0, right: 15.0, bottom: 5.0),
+          color: getPriorityColor(this.taskList[pos].priority),
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.white, width: 1),
+            side: BorderSide(color: Colors.black12, width: 1),
             borderRadius: BorderRadius.circular(30),
           ),
           elevation: 2.0,
@@ -97,7 +97,7 @@ class NoteListState extends State<NoteList> {
 
 
             onTap: () {
-              switchAddEditPage(this.taskList[pos],"\n\n-      E D I T     T A S K     -  \n");
+              switchAddEditPage(this.taskList[pos],"\n\n E D I T     T A S K      -  \n");
             },
 
           ),
@@ -110,14 +110,14 @@ class NoteListState extends State<NoteList> {
   Color getPriorityColor(int priority) {
     switch (priority) {
       case 1:
-        return Colors.red;
+        return Color.fromARGB(232,255,225,225);
         break;
       case 2:
-        return Colors.yellow;
+        return Color.fromARGB(232,254,255,225);
         break;
-
-      default:
-        return Colors.green;
+      case 3:
+        return Color.fromARGB(232,229,255,225);
+        break;
     }
   }
 
