@@ -31,7 +31,15 @@ class NoteListState extends State<NoteList> {
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(90),
           child: AppBar(
-            title: new Center(child: new Text("\n\n-      D U E     S O O N     -  \n", textAlign: TextAlign.center, style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),)),
+            title: new Center(
+                child: new Text(
+                  "\n\n-      D U E     S O O N     -  \n",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.bold),
+                )
+            ),
             backgroundColor: Colors.black54,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
@@ -43,11 +51,10 @@ class NoteListState extends State<NoteList> {
 
       floatingActionButton: FloatingActionButton (
         onPressed: () {
-          debugPrint('FAB clicked');
           switchAddEditPage(Task('','',2), "\n\nA D D    T A S K       +\n");
         },
 
-        tooltip: 'Add Note',
+        tooltip: 'Add Task',
 
         child: Icon(Icons.add),
       ),
@@ -61,9 +68,9 @@ class NoteListState extends State<NoteList> {
       itemBuilder: (BuildContext context, int position) {
         return Card(
           margin: EdgeInsets.all(18.0),
-          color: Colors.red,
+          color: Colors.white,
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: Colors.red, width: 2),
+            side: BorderSide(color: Colors.white, width: 1),
             borderRadius: BorderRadius.circular(30),
           ),
           elevation: 2.0,
